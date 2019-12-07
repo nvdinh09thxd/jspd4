@@ -1,0 +1,15 @@
+.wrapper {
+	width: 275px;
+	margin: 10px auto;
+	background: #8BCBF2;
+	
+}
+h2{
+	padding: 10px;
+	font-size: 30px;
+	font-weight: bold;
+	color: red;
+}
+form{
+	padding: 10px;
+}

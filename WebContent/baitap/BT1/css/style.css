@@ -1,0 +1,13 @@
+.wrapper {
+	width: 600px;
+	margin: 50px auto;
+	background-color: #C7EEEB;
+}
+
+.wrapper h2 {
+	background-color: #00A19C;
+	padding: 10px;
+}
+.wrapper form {
+	padding: 10px;
+}

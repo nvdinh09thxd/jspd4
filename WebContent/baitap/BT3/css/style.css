@@ -1,0 +1,15 @@
+.wrapper {
+	width: 1020px;
+	margin: 10px auto;
+	background: #C7EEEB;
+}
+h1{
+	padding: 10px;
+	font-size: 30px;
+	font-weight: bold;
+	color: #CFFEF0;
+	background: #329A7F;
+}
+form{
+	padding: 10px;
+}
