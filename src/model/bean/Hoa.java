@@ -6,7 +6,7 @@ public class Hoa {
 	int soLuong;
 	int gia;
 
-	public 	int getId() {
+	public int getId() {
 		return id;
 	}
 
@@ -49,8 +49,9 @@ public class Hoa {
 		this.soLuong = soLuong;
 		this.gia = gia;
 	}
+
 	public int tongTien() {
-		return(gia*soLuong);
+		return gia * soLuong;
 	}
 
 }

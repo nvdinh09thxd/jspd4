@@ -28,15 +28,15 @@ public class MuaHoaController extends HttpServlet {
 		String load = request.getParameter("load");
 		if ("xem".equals(load)) {
 			session.setAttribute("listHoa", listHoa);
-			RequestDispatcher rd = request.getRequestDispatcher("demo/xemhoa.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("baihoclop/xemhoa.jsp");
 			rd.forward(request, response);
 		} else if ("xoa".equals(load)) {
 			listHoa.clear();
 			session.setAttribute("listHoa", listHoa);
-			RequestDispatcher rd = request.getRequestDispatcher("demo/xemhoa.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("baihoclop/xemhoa.jsp");
 			rd.forward(request, response);
 		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("demo/muahoa.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("baihoclop/muahoa.jsp");
 			rd.forward(request, response);
 		}
 	}

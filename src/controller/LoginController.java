@@ -20,7 +20,7 @@ public class LoginController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("demo/login.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("baihoclop/login.jsp");
 		rd.forward(request, response);
 	}
 
@@ -36,7 +36,7 @@ public class LoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("account", account);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("demo/welcome.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("baihoclop/welcome.jsp");
 		rd.forward(request, response);
 	}
 
