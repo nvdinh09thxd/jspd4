@@ -1,4 +1,4 @@
-package model.bean;
+package bean;
 
 public class Hoa {
 	int id;
