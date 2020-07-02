@@ -9,18 +9,6 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <servlet-name>InfoController</servlet-name>
-    <servlet-class>Controller.InfoController</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>InfoController</servlet-name>
-    <url-pattern>/info</url-pattern>
-  </servlet-mapping>
-  
-  <session-config>
-    <session-timeout>2</session-timeout>
-  </session-config>
   
   <servlet>
     <servlet-name>LoginController</servlet-name>
@@ -28,7 +16,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>LoginController</servlet-name>
-    <url-pattern>/xu-ly-login</url-pattern>
+    <url-pattern>/login</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -37,6 +25,15 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>MuaHoaController</servlet-name>
-    <url-pattern>/xu-ly-mua-hoa</url-pattern>
+    <url-pattern>/muahoa</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <servlet-name>XuLyMuaHoaController</servlet-name>
+    <servlet-class>controller.XuLyMuaHoaController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>XuLyMuaHoaController</servlet-name>
+    <url-pattern>/xuly-muahoa</url-pattern>
   </servlet-mapping>
 </web-app>

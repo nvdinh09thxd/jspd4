@@ -44,7 +44,7 @@ public class AddFileController extends HttpServlet {
 		String fileName = filePart.getSubmittedFileName();
 		// kiểm tra nếu có chọn file thì mới upload
 		if (!"".equals(fileName)) {
-
+			//Lấy đường dẫn thực của dự án
 			String appPath = request.getServletContext().getRealPath("");
 			// tạo đường dẫn thư mục chứa file
 			String dirPath = appPath + DIR_UPLOAD;

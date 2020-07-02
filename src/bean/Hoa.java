@@ -4,7 +4,7 @@ public class Hoa {
 	int id;
 	String tenHoa;
 	int soLuong;
-	int gia;
+	float gia;
 
 	public int getId() {
 		return id;
@@ -30,11 +30,11 @@ public class Hoa {
 		this.soLuong = soLuong;
 	}
 
-	public int getGia() {
+	public float getGia() {
 		return gia;
 	}
 
-	public void setGia(int gia) {
+	public void setGia(float gia) {
 		this.gia = gia;
 	}
 
@@ -42,7 +42,7 @@ public class Hoa {
 		super();
 	}
 
-	public Hoa(int id, String tenHoa, int soLuong, int gia) {
+	public Hoa(int id, String tenHoa, int soLuong, float gia) {
 		super();
 		this.id = id;
 		this.tenHoa = tenHoa;
@@ -50,7 +50,7 @@ public class Hoa {
 		this.gia = gia;
 	}
 
-	public int tongTien() {
+	public float tongTien() {
 		return gia * soLuong;
 	}
 

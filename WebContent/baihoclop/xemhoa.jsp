@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.List"%>
+<%@ page import="java.util.ArrayList"%>
 <%@page import="bean.Hoa"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -26,7 +26,7 @@ th {
 <body>
 	<%
 		@SuppressWarnings("unchecked")
-		List<Hoa> listHoa = (List<Hoa>) session.getAttribute("listHoa");
+		ArrayList<Hoa> listHoa = (ArrayList<Hoa>) session.getAttribute("listHoa");
 		if (listHoa.size() > 0) {
 	%>
 	<table>
@@ -55,7 +55,7 @@ th {
 	<%
 		} else {
 	%>
-	<p>Danh sách trống</p>
+	<p>Không có danh sách hoa</p>
 	<a href="<%=request.getContextPath()%>/xu-ly-mua-hoa" title="">Mua hoa</a>
 	<%
 		}

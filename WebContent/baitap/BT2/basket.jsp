@@ -32,7 +32,7 @@
 	<%
 		@SuppressWarnings("unchecked")
 		ArrayList<Hoa> listHoa = (ArrayList<Hoa>) session.getAttribute("listHoa");
-			int tongTien = 0;
+			float tongTien = 0;
 			if (listHoa!=null && listHoa.size() > 0) {
 	%>
 	<table>
@@ -43,16 +43,16 @@
 			<th>Thành tiền</th>
 		</tr>
 		<%
-			for (int i = 0; i < listHoa.size(); i++) {
-					tongTien += listHoa.get(i).tongTien();
+			for (Hoa itemHoa: listHoa) {
+					tongTien += itemHoa.tongTien();
 		%>
 		<tr>
-			<td style="text-decoration: underline; color: #95677C; width: 330px"><%=listHoa.get(i).getTenHoa()%></td>
-			<td style="width: 170px"><%=listHoa.get(i).getGia()%></td>
+			<td style="text-decoration: underline; color: #95677C; width: 330px"><%=itemHoa.getTenHoa()%></td>
+			<td style="width: 170px"><%=itemHoa.getGia()%></td>
 			<td>
-				<input type="text" value="<%=listHoa.get(i).getSoLuong()%>" style="width: 150px" />
+				<input type="text" value="<%=itemHoa.getSoLuong()%>" style="width: 150px" />
 			</td>
-			<td style="width: 250px"><%=listHoa.get(i).tongTien()%></td>
+			<td style="width: 250px"><%=itemHoa.tongTien()%></td>
 		</tr>
 		<%
 			}
@@ -65,7 +65,7 @@
 	<%
 		} else {
 	%>
-	<p>Danh sách trống</p>
+	<p>Không có danh sách hoa</p>
 	<%
 		}
 	%>

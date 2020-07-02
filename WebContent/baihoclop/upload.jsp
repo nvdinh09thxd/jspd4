@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>VNT CMS - login</title>
+<title>Upload File</title>
 </head>
 <body>
-	<h1>Join form</h1>
+	<h1>Upload File</h1>
 	<form action="<%=request.getContextPath()%>/addFile" method="post" enctype="multipart/form-data">
 		Name: <input type="text" name="username" value="" /><br /><br />
 		Avatar: <input type="file" name="avatar" value="" /><br /><br />

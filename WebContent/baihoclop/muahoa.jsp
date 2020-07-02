@@ -13,13 +13,16 @@
 <body>
 	<div class="wrapper">
 		<h2>Mua hoa</h2>
-		<form action="<%=request.getContextPath()%>/xu-ly-mua-hoa"
-			method="post">
-			<label>ID hoa:</label> <input type="text" name="id" /><br /> <br />
-			<label>Tên hoa:</label> <input type="text" name="tenhoa" /><br /> <br />
-			<label>Số lượng:</label> <input type="text" name="soluong" /><br />
-			<br /> <label>Giá:</label> <input type="text" name="gia" /><br />
-			<br /> <input type="submit" value="Mua hoa" />
+		<form action="<%=request.getContextPath()%>/muahoa" method="post">
+			<label>ID hoa:</label> 
+			<input type="text" name="id" /><br /><br />
+			<label>Tên hoa:</label> 
+			<input type="text" name="tenhoa" /><br /><br />
+			<label>Số lượng:</label> 
+			<input type="text" name="soluong" /><br /><br />
+			<br /> <label>Giá:</label> 
+			<input type="text" name="gia" /><br /><br /> 
+			<input type="submit" value="Mua hoa" />
 		</form>
 		<a href="<%=request.getContextPath()%>/xu-ly-mua-hoa?load=xem"
 			title="">Xem kết quả</a>

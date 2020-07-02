@@ -2,7 +2,6 @@ package controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,12 +14,11 @@ import bean.Hoa;
 
 public class MuaHoaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ArrayList<Hoa> listHoa = new ArrayList<>();
 
 	public MuaHoaController() {
 		super();
 	}
-
-	List<Hoa> listHoa = new ArrayList<>();
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -28,13 +26,11 @@ public class MuaHoaController extends HttpServlet {
 		String load = request.getParameter("load");
 		if ("xem".equals(load)) {
 			session.setAttribute("listHoa", listHoa);
-			RequestDispatcher rd = request.getRequestDispatcher("baihoclop/xemhoa.jsp");
-			rd.forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/baihoclop/xemhoa.jsp");
 		} else if ("xoa".equals(load)) {
 			listHoa.clear();
 			session.setAttribute("listHoa", listHoa);
-			RequestDispatcher rd = request.getRequestDispatcher("baihoclop/xemhoa.jsp");
-			rd.forward(request, response);
+			response.sendRedirect(request.getContextPath() + "/baihoclop/xemhoa.jsp");
 		} else {
 			RequestDispatcher rd = request.getRequestDispatcher("baihoclop/muahoa.jsp");
 			rd.forward(request, response);
@@ -50,19 +46,17 @@ public class MuaHoaController extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String tenHoa = request.getParameter("tenhoa");
 		int soLuong = Integer.parseInt(request.getParameter("soluong"));
-		int gia = Integer.parseInt(request.getParameter("gia"));
+		float gia = Float.parseFloat(request.getParameter("gia"));
 		boolean check = false;
 		for (Hoa objHoa : listHoa) {
 			if (objHoa.getId() == id) {
-				objHoa.setSoLuong(soLuong+objHoa.getSoLuong());
-				check=true;
+				objHoa.setSoLuong(soLuong + objHoa.getSoLuong());
+				check = true;
 			}
 		}
-		if(!check) {
+		if (!check) {
 			listHoa.add(new Hoa(id, tenHoa, soLuong, gia));
 		}
-		HttpSession session = request.getSession();
-		session.setAttribute("listHoa", listHoa);
 
 		response.sendRedirect(request.getContextPath() + "/xu-ly-mua-hoa");
 	}

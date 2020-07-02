@@ -20,7 +20,7 @@ public class LoginController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		RequestDispatcher rd = request.getRequestDispatcher("baihoclop/login.jsp");
+		RequestDispatcher rd = request.getRequestDispatcher("baitap/BT1/login.jsp");
 		rd.forward(request, response);
 	}
 
@@ -31,13 +31,16 @@ public class LoginController extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		Account account = new Account(username, password);
+		if ("".equals(username) || "".equals(password)) {
+			response.sendRedirect(request.getContextPath() + "/baitap/BT1/login.jsp?err=0");
+			return;
+		}
 
 		HttpSession session = request.getSession();
-		session.setAttribute("account", account);
-		
-		RequestDispatcher rd = request.getRequestDispatcher("baihoclop/welcome.jsp");
-		rd.forward(request, response);
+		Account user = new Account(username, password);
+		session.setAttribute("user", user);
+
+		response.sendRedirect(request.getContextPath() + "/baitap/BT1/welcome.jsp");
 	}
 
 }
