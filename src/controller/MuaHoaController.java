@@ -26,13 +26,13 @@ public class MuaHoaController extends HttpServlet {
 		String load = request.getParameter("load");
 		if ("xem".equals(load)) {
 			session.setAttribute("listHoa", listHoa);
-			response.sendRedirect(request.getContextPath() + "/baihoclop/xemhoa.jsp");
+			response.sendRedirect(request.getContextPath() + "/baihoclop/muahoa/xemhoa.jsp");
 		} else if ("xoa".equals(load)) {
 			listHoa.clear();
 			session.setAttribute("listHoa", listHoa);
-			response.sendRedirect(request.getContextPath() + "/baihoclop/xemhoa.jsp");
+			response.sendRedirect(request.getContextPath() + "/baihoclop/muahoa/xemhoa.jsp");
 		} else {
-			RequestDispatcher rd = request.getRequestDispatcher("baihoclop/muahoa.jsp");
+			RequestDispatcher rd = request.getRequestDispatcher("baihoclop/muahoa/muahoa.jsp");
 			rd.forward(request, response);
 		}
 	}
@@ -58,6 +58,6 @@ public class MuaHoaController extends HttpServlet {
 			listHoa.add(new Hoa(id, tenHoa, soLuong, gia));
 		}
 
-		response.sendRedirect(request.getContextPath() + "/xu-ly-mua-hoa");
+		response.sendRedirect(request.getContextPath() + "/muahoa");
 	}
 }

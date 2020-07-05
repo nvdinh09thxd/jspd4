@@ -10,9 +10,6 @@
 	<style>
 		table {
 			border: 1px solid gray;
-		}
-		
-		table {
 			border-collapse: collapse;
 			width: 900px;
 			margin: 10px auto;
@@ -23,7 +20,6 @@
 		}
 		
 		td {
-			//border: 1px solid red;
 			text-align: center;
 		}
 	</style>

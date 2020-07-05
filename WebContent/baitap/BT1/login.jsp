@@ -11,7 +11,7 @@
 	<body>
 		<div class="wrapper">
 			<h2>Login</h2>
-			<form action="<%=request.getContextPath()%>/xu-ly-login" method="post">
+			<form action="<%=request.getContextPath()%>/login" method="post">
 				<label>Tên đăng nhập:</label> 
 				<input type="text" name="username" /><br /><br /> 
 				<label>Mật khẩu:</label> 

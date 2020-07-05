@@ -50,13 +50,13 @@ th {
 			}
 		%>
 	</table>
-	<a href="<%=request.getContextPath()%>/xu-ly-mua-hoa" title="">Mua hoa</a>
-	<a href="<%=request.getContextPath()%>/xu-ly-mua-hoa?load=xoa" title="">Xóa hết</a>
+	<a href="<%=request.getContextPath()%>/muahoa" title="">Mua hoa</a>
+	<a href="<%=request.getContextPath()%>/muahoa?load=xoa" title="">Xóa hết</a>
 	<%
 		} else {
 	%>
 	<p>Không có danh sách hoa</p>
-	<a href="<%=request.getContextPath()%>/xu-ly-mua-hoa" title="">Mua hoa</a>
+	<a href="<%=request.getContextPath()%>/muahoa" title="">Mua hoa</a>
 	<%
 		}
 	%>

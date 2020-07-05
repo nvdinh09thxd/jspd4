@@ -11,7 +11,7 @@
 	<body>
 		<div class="wrapper">
 			<h1>Upload ảnh</h1>
-			<form action="<%=request.getContextPath()%>/xu-ly-upload" method="post"	enctype="multipart/form-data">
+			<form action="<%=request.getContextPath()%>/upload" method="post" enctype="multipart/form-data">
 				<label>Hình ảnh:</label>
 				<input type="file" name="avatar" value="" /><br />
 				<input type="submit" name="submit" value="Up hình" />
