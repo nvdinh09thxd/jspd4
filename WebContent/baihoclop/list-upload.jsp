@@ -1,3 +1,5 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,11 +10,21 @@
 </head>
 <body>
 <h1>Danh sách các hình ảnh upload</h1>
+<a href="<%=request.getContextPath()%>/baihoclop/index.jsp">Upload ảnh</a>
 <div>
 	<%
-		String fileName = (String) session.getAttribute("fileName");
+		ArrayList<String> arFileName = new ArrayList<String>();
+		if(session.getAttribute("arFileName")!=null){
+			arFileName = (ArrayList<String>) session.getAttribute("arFileName");
+		}
+		if(arFileName.size() > 0){
+		for(String fileName: arFileName){
 	%>
-	<img alt="Không thể hiển thị được hình ảnh" src="<%=request.getContextPath()%>/uploads/<%=fileName %>">
+		<img alt="Không thể hiển thị được hình ảnh" src="<%=request.getContextPath()%>/uploads/<%=fileName %>">
+	<%}
+		}else{ %>
+		<p>Không có hình ảnh nào!</p>
+	<%} %>
 </div>
 </body>
 </html>

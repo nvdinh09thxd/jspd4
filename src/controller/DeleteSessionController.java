@@ -23,7 +23,7 @@ public class DeleteSessionController extends HttpServlet {
 		session.removeAttribute("fileName");
 		response.getWriter().print("Xóa session thành công!");
 		// 2. Xóa tất cả các biến trong session
-		// session.invalidate();
+		 session.invalidate();
 		// response.getWriter().print("Đã xóa tất cả các biến trong session!");
 	}
 

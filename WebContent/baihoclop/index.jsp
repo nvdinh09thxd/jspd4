@@ -10,10 +10,6 @@
 <body>
 	<div class="wrapper">
 		<h1>Thông tin Mr.VinaEnter</h1>
-		<%
-			String fileName = (String) session.getAttribute("fileName");
-			out.print(fileName);
-		%>
 		<form action="<%=request.getContextPath() %>/upload-file" method="post" enctype="multipart/form-data">
 		<!-- Phải có method="post" va có thêm thuộc tính enctype="multipart/form-data" -->
 			<p>
@@ -34,7 +30,13 @@
 		</form>
 		
 		<div class="button">
-			<a href="" title="">Lấy tên</a> || <a href="" title="">Lấy tuổi</a> || <a href="" title="">Lấy chiều cao</a>
+			<a href="<%=request.getContextPath()%>/baihoclop/list-upload.jsp">Xem những hình ảnh đã upload</a>
+			<%
+				String msg = (String) request.getParameter("msg");
+				String err = (String) request.getParameter("err");
+				if("1".equals(msg)) out.print("<p style='color: green'>Đã upload file thành công!</p>");
+				if("0".equals(err)) out.print("<p style='color: red'>Vui lòng chọn file!</p>");
+			%>
 		</div>
 	</div>
 </body>

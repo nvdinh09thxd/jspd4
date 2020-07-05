@@ -2,7 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,6 +19,7 @@ import javax.servlet.http.Part;
 public class UploadFileController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String DIR_UPLOAD = "uploads";
+	private static final ArrayList<String> arFileName = new ArrayList<>();
 
 	public UploadFileController() {
 		super();
@@ -35,11 +36,10 @@ public class UploadFileController extends HttpServlet {
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
-		PrintWriter out = response.getWriter();
 		// Lấy những thông tin không phải là file
-		String hoten = request.getParameter("hoten");
-		int tuoi = Integer.parseInt(request.getParameter("tuoi"));
-		String chieucao = request.getParameter("chieucao");
+		// String hoten = request.getParameter("hoten");
+		// int tuoi = Integer.parseInt(request.getParameter("tuoi"));
+		// String chieucao = request.getParameter("chieucao");
 
 		// out.print("Họ tên: " + hoten + "<br />");
 		// out.print("Tuổi: " + tuoi + "<br />");
@@ -47,7 +47,6 @@ public class UploadFileController extends HttpServlet {
 
 		// Lấy thông tin file
 		Part filePart = request.getPart("hinhanh");
-		String fileName = filePart.getSubmittedFileName();
 		// long fileSize = filePart.getSize();
 		// String fileType = filePart.getContentType();
 		// String fileNameInput = filePart.getName();
@@ -55,37 +54,50 @@ public class UploadFileController extends HttpServlet {
 		// out.print("File Size: " + fileSize + "<br />");
 		// out.print("File Type: " + fileType + "<br />");
 		// out.print("File Name Input: " + fileNameInput + "<br />");
+		String fileName = filePart.getSubmittedFileName();
+		if (fileName != "") {
+			// Upload File
+			// request.getContextPath(); //Đường dẫn tương đối
+			String contextRoot = request.getServletContext().getRealPath("");// đường dẫn gốc của dự án
+			// out.print("contextRoot: " + contextRoot);
+			// Tạo đường dẫn thư mục upload
+			String dirUpload = contextRoot + DIR_UPLOAD;
+			File saveDir = new File(dirUpload);
+			// Nếu chưa tồn tại thư mục thì tạo ra
+			if (!saveDir.exists()) {
+				saveDir.mkdir();
+			}
+			// Đổi tên file
+			String portal = fileName.split("\\.")[0];
+			String extra = fileName.split("\\.")[1];
+			long timeNow = System.currentTimeMillis();
+			fileName = portal + "_" + timeNow + "." + extra;
+			// Tạo đường dẫn file
+			String filePath = dirUpload + File.separator + fileName;
+			filePart.write(filePath);
+			// out.print("Upload File thành công, xem tại path: " + dirUpload);
 
-		// Upload File
-		// request.getContextPath(); //Đường dẫn tương đối
-		String contextRoot = request.getServletContext().getRealPath("");// đường dẫn gốc của dự án
-		// out.print("contextRoot: " + contextRoot);
-		// Tạo đường dẫn thư mục upload
-		String dirUpload = contextRoot + DIR_UPLOAD;
-		File saveDir = new File(dirUpload);
-		// Nếu chưa tồn tại thư mục thì tạo ra
-		if (!saveDir.exists()) {
-			saveDir.mkdir();
+			// Tìm hiểu thêm: upload nhiều file, đổi tên file, kiểm tra typefile, sizefile
+			// Lưu session là một ArrayList gồm nhiều file, rồi lấy ra ArrayList gồm nhiều
+			// file và hiển thị
+			String fileType = filePart.getContentType();
+//			System.out.println(fileType);
+			if ("image/jpeg".equals(fileType)) {
+				arFileName.add(fileName);
+			}
+			// Tạo đối tượng session
+			HttpSession session = request.getSession();
+
+			// Lưu lại thông tin session
+			session.setAttribute("arFileName", arFileName);
+			// Tự động xóa tất cả thông tin session sau 30 phút
+			// Nếu chạy từ file servlet thì sẽ tính thời gian timeout set ở đây
+			// còn nếu chạy từ file jsp thì sẽ tính thời gian timeout sẽ lấy ở file web.xml
+			session.setMaxInactiveInterval(60 * 30);// thời gian tính bằng giây
+			response.sendRedirect(request.getContextPath() + "/baihoclop/index.jsp?msg=1");
+		} else {
+			response.sendRedirect(request.getContextPath() + "/baihoclop/index.jsp?err=0");
 		}
-		// Tạo đường dẫn file
-		String filePath = dirUpload + File.separator + fileName;
-		filePart.write(filePath);
-		out.print("Upload File thành công, xem tại path: " + dirUpload);
-		
-		// Tìm hiểu thêm: upload nhiều file, đổi tên file, kiểm tra typefile, sizefile
-		// Lưu session là một ArrayList gồm nhiều file, rồi lấy ra ArrayList gồm nhiều file và hiển thị
-		
-		
-		// Tạo đối tượng session
-		HttpSession session = request.getSession();
-		
-		// Lưu lại thông tin session
-		session.setAttribute("fileName", fileName);
-		// Tự động xóa tất cả thông tin session sau 30 phút
-		// Nếu chạy từ file servlet thì sẽ tính thời gian timeout set ở đây
-		// còn nếu chạy từ file jsp thì sẽ tính thời gian timeout sẽ lấy ở file web.xml
-		session.setMaxInactiveInterval(60*30);// thời gian tính bằng giây
-		response.sendRedirect(request.getContextPath()+"/baihoclop/list-upload.jsp");
 	}
 
 }
