@@ -19,7 +19,7 @@ public class UploadController extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		response.sendRedirect(request.getContextPath() + "/baitap/BT3/upload.jsp");
+		request.getRequestDispatcher("/baitap/BT3/upload.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -38,8 +38,8 @@ public class UploadController extends HttpServlet {
 			long time = System.currentTimeMillis();
 			String filePath = dirPath + File.separator + portal + "_" + time + "." + extra;
 			filePart.write(filePath);
-			String link = filePath.replace("\\", "-");
-			response.sendRedirect(request.getContextPath() + "/baitap/BT3/upload.jsp?msg=1&link="+link);
+			request.setAttribute("filePath", filePath);
+			request.getRequestDispatcher("/baitap/BT3/upload.jsp?msg=1").forward(request, response);
 		} else {
 			response.sendRedirect(request.getContextPath() + "/baitap/BT3/upload.jsp?msg=0");
 		}

@@ -36,6 +36,9 @@ public class UploadFileController extends HttpServlet {
 		response.setContentType("text/html");
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
+		// Tạo đối tượng session
+		HttpSession session = request.getSession();
+		
 		// Lấy những thông tin không phải là file
 		// String hoten = request.getParameter("hoten");
 		// int tuoi = Integer.parseInt(request.getParameter("tuoi"));
@@ -84,12 +87,10 @@ public class UploadFileController extends HttpServlet {
 //			System.out.println(fileType);
 			if ("image/jpeg".equals(fileType)) {
 				arFileName.add(fileName);
+				// Lưu lại thông tin session
+				session.setAttribute("arFileName", arFileName);
 			}
-			// Tạo đối tượng session
-			HttpSession session = request.getSession();
 
-			// Lưu lại thông tin session
-			session.setAttribute("arFileName", arFileName);
 			// Tự động xóa tất cả thông tin session sau 30 phút
 			// Nếu chạy từ file servlet thì sẽ tính thời gian timeout set ở đây
 			// còn nếu chạy từ file jsp thì sẽ tính thời gian timeout sẽ lấy ở file web.xml

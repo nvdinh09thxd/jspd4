@@ -11,11 +11,6 @@
 	<body>
 		<div class="wrapper">
 			<h1>Upload ảnh</h1>
-			<form action="<%=request.getContextPath()%>/upload" method="post" enctype="multipart/form-data">
-				<label>Hình ảnh:</label>
-				<input type="file" name="avatar" value="" /><br />
-				<input type="submit" name="submit" value="Up hình" />
-			</form>
 			<%
 				String msg = request.getParameter("msg");
 				if("0".equals(msg)){
@@ -23,9 +18,14 @@
 				} else if("1".equals(msg)) {
 					String link = request.getParameter("link");
 					out.print("<p style='color: green'>Da up thanh cong!</p>");
-					out.print("<p style='color: green'>Đường dẫn hình ảnh: "+ link.replace("-", "\\") +"</p>");
 				}
 			%>
+			<form action="<%=request.getContextPath()%>/upload" method="post" enctype="multipart/form-data">
+				<label>Hình ảnh:</label>
+				<input type="file" name="avatar" value="" /><br />
+				<input type="submit" name="submit" value="Up hình" />
+			</form>
+			<h3>${filePath}</h3>
 		</div>
 	</body>
 </html>
