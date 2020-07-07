@@ -38,7 +38,7 @@ public class UploadFileController extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		// Tạo đối tượng session
 		HttpSession session = request.getSession();
-		
+
 		// Lấy những thông tin không phải là file
 		// String hoten = request.getParameter("hoten");
 		// int tuoi = Integer.parseInt(request.getParameter("tuoi"));
@@ -84,8 +84,8 @@ public class UploadFileController extends HttpServlet {
 			// Lưu session là một ArrayList gồm nhiều file, rồi lấy ra ArrayList gồm nhiều
 			// file và hiển thị
 			String fileType = filePart.getContentType();
-//			System.out.println(fileType);
-			if ("image/jpeg".equals(fileType)) {
+			// System.out.println(fileType);
+			if (fileType.startsWith("image")) {
 				arFileName.add(fileName);
 				// Lưu lại thông tin session
 				session.setAttribute("arFileName", arFileName);
