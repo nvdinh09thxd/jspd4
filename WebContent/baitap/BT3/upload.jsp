@@ -16,7 +16,6 @@
 				if("0".equals(msg)){
 					out.print("<p style='color: red'>Vui long chon hinh anh!</p>");
 				} else if("1".equals(msg)) {
-					String link = request.getParameter("link");
 					out.print("<p style='color: green'>Da up thanh cong!</p>");
 				}
 			%>

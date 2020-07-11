@@ -94,7 +94,7 @@ public class UploadFileController extends HttpServlet {
 			// Tự động xóa tất cả thông tin session sau 30 phút
 			// Nếu chạy từ file servlet thì sẽ tính thời gian timeout set ở đây
 			// còn nếu chạy từ file jsp thì sẽ tính thời gian timeout sẽ lấy ở file web.xml
-			session.setMaxInactiveInterval(60 * 30);// thời gian tính bằng giây
+			session.setMaxInactiveInterval(60 * 30);// thời gian timeout tính bằng giây
 			response.sendRedirect(request.getContextPath() + "/baihoclop/index.jsp?msg=1");
 		} else {
 			response.sendRedirect(request.getContextPath() + "/baihoclop/index.jsp?err=0");

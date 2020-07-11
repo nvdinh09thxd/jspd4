@@ -32,24 +32,27 @@ public class XuLyMuaHoaController extends HttpServlet {
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
 		HttpSession session = request.getSession();
+		String idStr = request.getParameter("id");
+		String tenHoa = request.getParameter("tenhoa");
+		String soLuongStr = request.getParameter("soluong");
+		String giaStr = request.getParameter("gia");
 		int id, soLuong;
-		String tenHoa;
 		float gia;
-		//Nếu chưa nhập một trường nào đó thì chuyển hướng về và thông báo lỗi
-		if (request.getParameter("id") == "" || request.getParameter("tenhoa") == ""
-				|| request.getParameter("soluong") == "" || request.getParameter("gia") == "") {
+		// Nếu chưa nhập một trường nào đó thì chuyển hướng về và thông báo lỗi
+		if (idStr == "" || tenHoa == "" || soLuongStr == "" || giaStr == "") {
 			response.sendRedirect(request.getContextPath() + "/baitap/BT2/shop.jsp?err=0");
 			return;
 		}
+		// Parse các giá trị string sang kiểu số
 		try {
-			id = Integer.parseInt(request.getParameter("id"));
-			tenHoa = request.getParameter("tenhoa");
-			soLuong = Integer.parseInt(request.getParameter("soluong"));
-			gia = Float.parseFloat(request.getParameter("gia"));
+			id = Integer.parseInt(idStr);
+			soLuong = Integer.parseInt(soLuongStr);
+			gia = Float.parseFloat(giaStr);
 		} catch (NumberFormatException e) {
 			response.sendRedirect(request.getContextPath() + "/baitap/BT2/shop.jsp?err=1");
 			return;
 		}
+		// Xét điều kiện: Nếu đã tồn tại id hoa thì tăng số lượng chứ không thêm mới phần tử
 		boolean check = false;
 		for (Hoa objHoa : listHoa) {
 			if (objHoa.getId() == id) {
