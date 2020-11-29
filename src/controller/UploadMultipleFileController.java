@@ -30,12 +30,17 @@ public class UploadMultipleFileController extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		File saveDir = new File(UPLOAD_DIRECTORY);
+		if (!saveDir.exists()) {
+			saveDir.mkdirs();
+		}
 		if (ServletFileUpload.isMultipartContent(request)) {
 			try {
 				List<FileItem> multiparts = new ServletFileUpload(new DiskFileItemFactory()).parseRequest(request);
 				for (FileItem item : multiparts) {
 					if (!item.isFormField()) {
 						String name = new File(item.getName()).getName();
+						name = rename(name);
 						item.write(new File(UPLOAD_DIRECTORY + File.separator + name));
 					}
 				}
@@ -46,7 +51,27 @@ public class UploadMultipleFileController extends HttpServlet {
 		} else {
 			request.setAttribute("message", "Sorry this servlet only handles file upload request.");
 		}
+		String name = request.getParameter("name");
+		System.out.println("name: " + name);
 		request.getRequestDispatcher("/baihoclop/upload-multiple/result.jsp").forward(request, response);
+	}
+
+	public static String rename(String fileName) {
+		String nameFile = "";
+		if (!fileName.isEmpty()) {
+			String[] arrImg = fileName.split("\\.");
+			String duoiFileImg = arrImg[arrImg.length - 1];
+
+			for (int i = 0; i < (arrImg.length - 1); i++) {
+				if (i == 0) {
+					nameFile = arrImg[i];
+				} else {
+					nameFile += "-" + arrImg[i];
+				}
+			}
+			nameFile = nameFile + "-" + System.nanoTime() + "." + duoiFileImg;
+		}
+		return nameFile;
 	}
 
 }

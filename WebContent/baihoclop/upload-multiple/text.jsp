@@ -7,12 +7,17 @@
 <title>Upload page</title>
 </head>
 <body>
-	<form action="upload-multiple" method="post" enctype="multipart/form-data">
+	<form action="<%=request.getContextPath() %>/text" method="post" enctype="multipart/form-data">
 		<center>
 			<table border="1">
 				<tr>
 					<td align="center">
-						<input type="text" id="name" value="" name="name" class="form-control" />
+						Name:<input type="text" id="name" value="" name="name" />
+					</td>
+				</tr>
+				<tr>
+					<td align="center">
+						Pass:<input type="text" id="pass" value="" name="pass" />
 					</td>
 				</tr>
 				<tr>
