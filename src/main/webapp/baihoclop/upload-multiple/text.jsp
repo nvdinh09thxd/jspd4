@@ -22,7 +22,7 @@
 				</tr>
 				<tr>
 					<td>
-						Specify file : <input name="file" type="file" id="file" multiple>
+						Specify file : <input name="file" type="file" id="file" multiple />
 					</td>
 				</tr>
 				<tr>
